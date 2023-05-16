@@ -1,3 +1,4 @@
+// @ts-check
 function range_vision(n) {
   const digits = n
     .toString()
@@ -8,8 +9,8 @@ function range_vision(n) {
 
   if (!hasDigitOne) return false;
 
-  const sums = [];
-  const sumsDigitOne = [];
+  let sumDigitOne;
+  let sumNoDigitOne;
 
   for (let i = 0; i < digits.length; i++) {
     const currentDigit = digits[i];
@@ -29,17 +30,14 @@ function range_vision(n) {
 
     const totalCurrentSum = currentSum.reduce((total, number) => total + number, 0);
 
-    if (currentDigit === 1) {
-      sumsDigitOne.push(totalCurrentSum);
-    } else {
-      sums.push(totalCurrentSum);
+    if (currentDigit === 1 && (sumDigitOne === undefined || sumDigitOne > totalCurrentSum)) {
+      sumDigitOne = totalCurrentSum;
+    } else if (sumNoDigitOne === undefined || sumNoDigitOne > totalCurrentSum) {
+      sumNoDigitOne = totalCurrentSum;
     }
   }
 
-  const minSum = Math.min(...sums);
-  const minSumDigitOne = Math.min(...sumsDigitOne);
+  console.log({ sumDigitOne, sumNoDigitOne });
 
-  return minSumDigitOne <= minSum;
+  return sumDigitOne === sumNoDigitOne;
 }
-
-console.log(range_vision(34315));
