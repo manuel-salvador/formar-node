@@ -1,4 +1,3 @@
-// @ts-check
 function range_vision(n) {
   const digits = n
     .toString()
