@@ -37,7 +37,5 @@ function range_vision(n) {
     }
   }
 
-  console.log({ sumDigitOne, sumNoDigitOne });
-
   return sumDigitOne === sumNoDigitOne;
 }
